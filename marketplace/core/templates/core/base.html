@@ -1,29 +1,68 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="icon" type="image/x-icon" href="media/images/favicon.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{% static 'marketplace\core\static\core\static.js' %}"></script>
     <title>{% block title %} {% endblock %} | MarketPlace</title>
 </head>
-<body>
-    <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-200">
-        <a href="/" class="text-xl font-semibold">MarketPlace</a>
-        <div class="space-x-6">
-            <a href="{% url 'item:new' %}" class="text-lg font-semibold hover:text-gray-500">New Item</a>
-            <a href="{% url 'item:items' %}" class="text-lg font-semibold hover:text-gray-500">Browse</a>
-
-            <!-- If user is logged in -->
-            {% if request.user.is_authenticated %}
-                <a href="{% url 'conversation:inbox' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Inbox</a>
-                <a href="{% url 'dashboard:index' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Dashboard</a>
-            
-            {% else %}
-            <!-- If user is not logged in -->
-                <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign Up</a>
-                <a href="{% url 'core:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log In</a>
-            {% endif %}
+<body>   
+    <nav>
+        <div class="">
+            <div class="w-full top-0 z-50">
+                <img src="media/images/gif.gif" alt="banner" class="w-full">
+            </div>
+            <div class="fixed sticky top-0 py-6 px-6 flex justify-between items-center border-b border-gray-200">
+                <div class="flex">
+                    <a href="/" class="text-xl font-semibold pr-5">MarketPlace</a>
+                    <div class="relative">
+                        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+                            Categories
+                            <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                            </svg>
+                        </button>
+                        <!-- Dropdown menu -->
+                        <div class="absolute z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200">
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Furniture</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Cars</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Electronics</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Fashion</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>                    
+                </div>
+                <div class="space-x-6">
+                    <a href="{% url 'item:new' %}" class="text-lg font-semibold hover:text-gray-500">New Item</a>
+                    <a href="{% url 'item:items' %}" class="text-lg font-semibold hover:text-gray-500">Browse</a>
+        
+                    <!-- If user is logged in -->
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'conversation:inbox' %}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Inbox</a>
+                        <a href="{% url 'dashboard:index' %}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Dashboard</a>
+                    
+                    {% else %}
+                    <!-- If user is not logged in -->
+                        <a href="{% url 'core:signup' %}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign Up</a>
+                        <a href="{% url 'core:login' %}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Log In</a>
+                    {% endif %}
+                </div>
+            </div> 
         </div>
     </nav>
     <div class="px-6 py-6">
@@ -54,5 +93,18 @@
             </ul>
         </div>
     </footer>
+
+    <script>
+        const dropdownButton = document.querySelector('.relative');
+        const dropdownMenu = document.querySelector('.absolute');
+    
+        dropdownButton.addEventListener('mouseover', () => {
+            dropdownMenu.classList.remove('hidden');
+        });
+    
+        dropdownButton.addEventListener('mouseout', () => {
+            dropdownMenu.classList.add('hidden');
+        });
+    </script> 
 </body>
 </html>
